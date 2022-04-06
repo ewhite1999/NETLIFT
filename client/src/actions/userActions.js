@@ -48,7 +48,8 @@ export const fetchProfile = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const { data } = await axios.get("http://127.0.0.1:5000/user", {
+      // eslint-disable-next-line no-undef
+      const { data } = await axios.get(`${process.env.API_URL}user`, {
         headers: { Authorization: token },
       });
       dispatch({
