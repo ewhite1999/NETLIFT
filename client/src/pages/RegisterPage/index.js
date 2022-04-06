@@ -2,8 +2,11 @@ import React from "react";
 import Form from "../../components/Form";
 import logo from "../../static/imgs/logo.png";
 import { NavLink as Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../actions/userActions";
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   // TODO: remove this
   // eslint-disable-next-line no-undef
   // console.log(process.env.API_URL);
@@ -36,6 +39,10 @@ const RegisterPage = () => {
     if (confirmPass.value !== pass.value) {
       confirmPass.value = "";
       confirmPass.focus();
+    }
+    else{
+      dispatch(registerUser(e));
+
     }
   };
   return (

@@ -2,19 +2,17 @@ import React from "react";
 import Form from "../../components/Form";
 import logo from "../../static/imgs/logo.png";
 import { NavLink as Link } from "react-router-dom";
-import {addUser} from "../../actions/userActions";
-import { useDispatch,  useSelector} from "react-redux";
+import {loginUser} from "../../actions/userActions";
+import { useDispatch} from "react-redux";
 
 
 const LoginPage = () => {
-  const token = useSelector(state => state.token);
   const dispatch = useDispatch();
   const inputs = [{ text: "username" }, { text: "password" }];
   const login = (e) => {
-    // TODO: add reducer
     e.preventDefault();
-    dispatch(addUser(e));
-    console.log(token);
+    dispatch(loginUser(e));
+    
   };
   
   return (

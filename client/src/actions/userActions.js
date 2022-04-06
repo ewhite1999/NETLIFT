@@ -1,26 +1,30 @@
 import axios from "axios";
 
-export const registerUser = (e) => {
-  return async (dispatch) => {
+
+export const registerUser = async (e) => {
+  
+  return async () => {
     try {
       const { data } = await axios.post("http://127.0.0.1:5000/register", {
         username: e.target.username.value,
         email: e.target.email.value,
         password: e.target.password.value
       });
-      if (data.status == 201) {
-        addUser(e);
-      }
+      console.log(data);
+      await loginUser(e);
     } catch (err) {
       return err;
     }
   };
 };
 
-export const addUser = (e) => {
+export const loginUser = async (e) => {
+  console.log("line 24");
   return async (dispatch) => {
     try {
+
       const username = e.target.username.value;
+      console.log(username);
       const { data } = await axios.post("http://127.0.0.1:5000/login", {
         username: e.target.username.value,
         password: e.target.password.value
