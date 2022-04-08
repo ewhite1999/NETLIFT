@@ -39,7 +39,7 @@ const WorkoutCreate = () => {
   const renderExercises = () => {
     if (exercise.length > 0) {
       return (
-        <>
+        <div className=" border-2 border-nl-darkblue rounded-xl py-4 px-6">
           <label
             className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200 last:mr-0 mr-1 mb-4"
             htmlFor="exercises"
@@ -51,7 +51,7 @@ const WorkoutCreate = () => {
               return <li key={ex.name}>{ex.name}</li>;
             })}
           </ul>
-        </>
+        </div>
       );
     }
   };
