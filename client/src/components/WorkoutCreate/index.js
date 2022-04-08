@@ -52,12 +52,16 @@ const WorkoutCreate = () => {
 
   const renderExercises = () => {
     if (exercise.length > 0) {
-      <label htmlFor="exercises">Selected Exercises: </label>;
-      return exercise.map((ex) => (
-        <ul>
-          <li> {ex.name} </li>
-        </ul>
-      ));
+      return (
+        <>
+          <label htmlFor="exercises">Selected Exercises: </label>
+          <ul>
+            {exercise.map((ex) => {
+              return <li>{ex.name}</li>;
+            })}
+          </ul>
+        </>
+      );
     }
   };
 
