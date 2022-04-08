@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import Title from "../../components/Title";
 import { fetchProfile, getQuote } from "../../actions/userActions";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProgramsPage = () => {
@@ -44,7 +44,12 @@ const ProgramsPage = () => {
         />
       ));
     } else {
-      return <p>create an exercise</p>;
+      return (
+        <p>
+          You don't have any Programs yet, why not{" "}
+          <Link to="/create">create one?</Link>
+        </p>
+      );
     }
   };
 
