@@ -54,8 +54,13 @@ const WorkoutCreate = () => {
     if (exercise.length > 0) {
       return (
         <>
-          <label htmlFor="exercises">Selected Exercises: </label>
-          <ul>
+          <label
+            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200 last:mr-0 mr-1 mb-4"
+            htmlFor="exercises"
+          >
+            Selected Exercises:{" "}
+          </label>
+          <ul className="space-y-1">
             {exercise.map((ex) => {
               return <li>{ex.name}</li>;
             })}
@@ -89,7 +94,7 @@ const WorkoutCreate = () => {
       >
         <div className="bg-slate-50 relative rounded-xl p-5">
           <label
-            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200 uppercase last:mr-0 mr-1"
+            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200 last:mr-0 mr-1"
             htmlFor="trainingDays"
           >
             Training Days
