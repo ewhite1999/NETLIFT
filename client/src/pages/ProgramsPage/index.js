@@ -22,7 +22,6 @@ const ProgramsPage = () => {
 
   const renderExercises = () => {
     if (exercise.length > 0) {
-      console.log(exercise);
       return exercise;
     } else {
       return false;
@@ -30,7 +29,6 @@ const ProgramsPage = () => {
   };
 
   const renderPreview = () => {
-    console.log(loading);
     if (programs._programs && renderExercises()) {
       let trainingDays = programs._programs[0].training_days.map((day) =>
         day < dayOfWeek ? day + 7 : day
@@ -39,7 +37,8 @@ const ProgramsPage = () => {
       return trainingDays.map((day) => (
         <WorkoutPreview
           day={today.day(day).format("ddd D MMM")}
-          exercises={renderExercises()}
+          exercises={exercise}
+          unit={programs._unit}
           key={today.day(day).format()}
           workoutNum={1}
         />

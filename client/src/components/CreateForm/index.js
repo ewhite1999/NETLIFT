@@ -18,7 +18,7 @@ const CreateForm = (props) => {
 CreateForm.propTypes = {
   text: PropTypes.string.isRequired,
   inputs: PropTypes.array.isRequired,
-  handleSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default CreateForm;

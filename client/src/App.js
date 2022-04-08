@@ -10,14 +10,13 @@ import {
   Err404,
   Settings,
   WorkoutPage,
-  CreateProgram,
+  CreateProgram
 } from "./pages";
 
 import { NavBar } from "./components";
 
 const App = () => {
   let location = useLocation();
-  console.log(location);
 
   return (
     <div data-testid="test-app" className="bg-nl-darkblue min-h-screen">
@@ -37,8 +36,9 @@ const App = () => {
       location.pathname === "/" ||
       location.pathname === "/history" ||
       location.pathname == "/settings" ||
-      location.pathname === "/workouts" ? (<NavBar />) : 
-      null}
+      location.pathname === "/workouts" ? (
+        <NavBar />
+      ) : null}
     </div>
   );
 };

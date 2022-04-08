@@ -9,7 +9,7 @@ export const registerUser = (e) => {
       const { data } = await axios.post(`${api}register`, {
         username: e.target.username.value,
         email: e.target.email.value,
-        password: e.target.password.value,
+        password: e.target.password.value
       });
       return dispatch(loginUser(e));
     } catch (err) {
@@ -24,18 +24,18 @@ export const loginUser = (e) => {
       const username = e.target.username.value;
       const { data } = await axios.post(`${api}login`, {
         username: e.target.username.value,
-        password: e.target.password.value,
+        password: e.target.password.value
       });
       let token = `Bearer ${data.access_token}`;
       localStorage.setItem("token", token);
       dispatch({
         type: "LOGIN",
-        payload: { user: username, token: token },
+        payload: { user: username, token: token }
       });
     } catch (err) {
       dispatch({
         type: "SET_ERROR",
-        payload: err,
+        payload: err
       });
     }
   };
@@ -48,17 +48,17 @@ export const fetchProfile = () => {
       const token = localStorage.getItem("token");
 
       const { data } = await axios.get(`${api}user`, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
 
       dispatch({
         type: "LOAD_USER",
-        payload: data,
+        payload: data
       });
     } catch (err) {
       dispatch({
         type: "SET_ERROR",
-        payload: err,
+        payload: err
       });
     }
   };
@@ -71,13 +71,13 @@ export const updateUser = (updateCase) => {
       console.log(updateCase);
 
       const { data } = await axios.patch(`${api}user`, updateCase, {
-        headers: { Authorization: token },
+        headers: { Authorization: token }
       });
 
       if (data) {
         dispatch({
           type: "LOGOUT",
-          payload: true,
+          payload: true
         });
         localStorage.removeItem("token");
         alert(
@@ -87,7 +87,7 @@ export const updateUser = (updateCase) => {
     } catch (err) {
       dispatch({
         type: "SET_ERROR",
-        payload: err,
+        payload: err
       });
     }
   };
@@ -107,27 +107,32 @@ export const getQuote = async () => {
 export const updateLifts = (exName) => {
   return async (dispatch) => {
     try {
-
       dispatch({
         type: "LOAD_EXERCISES",
-        payload: exName,
+        payload: exName
       });
     } catch (err) {
       dispatch({
         type: "SET_ERROR",
-        payload: err,
+        payload: err
       });
     }
   };
-}
+};
 
-
-export const setExercises =  (exercises) => {
+export const setExercises = (exercises) => {
   return async (dispatch) => {
     dispatch({
       type: "LOAD_EXERCISES",
-      payload: exercises,
+      payload: exercises
     });
   };
-}
+};
 
+export const setProgram = (program) => {
+  return async () => {
+    const { data } = await axios.post(`${api}program`, {
+      program: program
+    });
+  };
+};

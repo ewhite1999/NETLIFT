@@ -4,17 +4,19 @@ import SelectEquipment from "../SelectEquipmemt";
 import SelectSets from "../SelectSets";
 import SelectTarget from "../SelectTarget";
 import SelectExercise from "../SelectExercise";
+import SelectWeight from "../SelectWeight";
 import { useDispatch } from "react-redux";
 import { updateLifts } from "../../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
 // TODO: Animate pages so it falls smoothly on page
 const WorkoutCreate = () => {
-  const dispatch = useDispatch()
-  const nav = useNavigate()
+  const dispatch = useDispatch();
+  const nav = useNavigate();
   const [exercises, setExercises] = useState();
   const [reps, setReps] = useState();
   const [sets, setSets] = useState();
+  const [weight, setWeight] = useState();
 
   const reset = () => {
     setExercises(null);
@@ -27,6 +29,7 @@ const WorkoutCreate = () => {
       name: ex,
       reps: reps,
       sets: sets,
+      weight: weight
     };
 
     dispatch(updateLifts(exObj));
@@ -42,9 +45,10 @@ const WorkoutCreate = () => {
       setSets(setsVal);
       const repsVal = form.reps.value;
       setReps(repsVal);
+      const weightVal = form.weight.value;
+      setWeight(weightVal);
       const queryString = `${process.env.API_URL}exercises?bodyPart=${target}&equipment=${equipment}`;
       const { data } = await axios.get(queryString);
-      console.log(data);
       setExercises(data);
     } catch (e) {
       alert("We don't have any exercises matching that criteria");
@@ -52,9 +56,9 @@ const WorkoutCreate = () => {
   };
 
   const handleNav = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     nav("/create", { replace: true });
-  }
+  };
 
   return (
     <div className="mx-auto container mt-4 text-nl-darkblue p-8">
@@ -70,6 +74,7 @@ const WorkoutCreate = () => {
         <SelectEquipment />
         <SelectSets name={"sets"} max={20} />
         <SelectSets name={"reps"} />
+        <SelectWeight name={"weight"} />
         <input
           className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
           type="submit"
@@ -78,13 +83,13 @@ const WorkoutCreate = () => {
       </form>
       {exercises && (
         <SelectExercise data={exercises} submitExercise={submitHandler} />
-        )}
-        <input
-            className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
-            type="button"
-            value="confirm workout"
-            onClick={e => handleNav(e)}
-          />
+      )}
+      <input
+        className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
+        type="button"
+        value="confirm workout"
+        onClick={(e) => handleNav(e)}
+      />
     </div>
   );
 };

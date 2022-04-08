@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const WorkoutPreview = (props) => {
-  const { day, exercises, workoutNum } = props;
+  const { day, exercises, unit, workoutNum } = props;
 
   // TODO: change the weight to what they are actually doing
   return (
@@ -20,7 +20,8 @@ const WorkoutPreview = (props) => {
             >
               <span>{exercise.name}</span>
               <span>
-                {exercise.sets} x {exercise.reps} 100kg
+                {exercise.sets} x {exercise.reps} {exercise.weight}
+                {unit}
               </span>
             </li>
           );
@@ -33,7 +34,7 @@ const WorkoutPreview = (props) => {
 WorkoutPreview.propTypes = {
   day: PropTypes.string.isRequired,
   exercises: PropTypes.array.isRequired,
-  workoutNum: PropTypes.number.isRequired,
+  workoutNum: PropTypes.number.isRequired
 };
 
 export default WorkoutPreview;
