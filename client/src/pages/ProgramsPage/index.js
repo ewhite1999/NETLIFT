@@ -38,7 +38,8 @@ const ProgramsPage = () => {
         <WorkoutPreview
           day={today.day(day).format("ddd D MMM")}
           exercises={exercise}
-          unit={programs._unit}
+          // this has been hardcoded as the server was returning 0
+          unit={"kg"}
           key={today.day(day).format()}
           workoutNum={1}
         />
