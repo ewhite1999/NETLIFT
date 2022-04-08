@@ -5,7 +5,7 @@ import SelectSets from "../SelectSets";
 import SelectTarget from "../SelectTarget";
 import SelectExercise from "../SelectExercise";
 import SelectWeight from "../SelectWeight";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateLifts } from "../../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
@@ -17,6 +17,7 @@ const WorkoutCreate = () => {
   const [reps, setReps] = useState();
   const [sets, setSets] = useState();
   const [weight, setWeight] = useState();
+  const exercise = useSelector((state) => state.exercise.exercise);
 
   const reset = () => {
     setExercises(null);
@@ -33,6 +34,26 @@ const WorkoutCreate = () => {
     };
 
     dispatch(updateLifts(exObj));
+  };
+
+  const renderExercises = () => {
+    if (exercise.length > 0) {
+      return (
+        <>
+          <label
+            className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-slate-600 bg-slate-200 last:mr-0 mr-1 mb-4"
+            htmlFor="exercises"
+          >
+            Selected Exercises:{" "}
+          </label>
+          <ul className="space-y-1">
+            {exercise.map((ex) => {
+              return <li key={ex.name}>{ex.name}</li>;
+            })}
+          </ul>
+        </>
+      );
+    }
   };
 
   const loadExercises = async (e) => {
@@ -84,6 +105,7 @@ const WorkoutCreate = () => {
       {exercises && (
         <>
           <SelectExercise data={exercises} submitExercise={submitHandler} />
+          {renderExercises()}
           <input
             className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
             type="button"
