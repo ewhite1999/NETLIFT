@@ -24,7 +24,7 @@ const WorkoutCreate = () => {
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday"
+    "Sunday",
   ];
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -113,9 +113,11 @@ const WorkoutCreate = () => {
             </ul>
           </div>
         </div>
-        <div className="bg-slate-50 relative rounded-xl p-5" name="exercises">
-          {renderExercises()}
-        </div>
+        {exercise.length > 0 && (
+          <div className="bg-slate-50 relative rounded-xl p-5" name="exercises">
+            {renderExercises()}
+          </div>
+        )}
         {renderAddExercises()}
         <button
           type="submit"
