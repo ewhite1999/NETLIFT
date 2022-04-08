@@ -18,7 +18,7 @@ const WorkoutCreate = () => {
   const [sets, setSets] = useState();
   const [weight, setWeight] = useState();
   const exercise = useSelector((state) => state.exercise.exercise);
-
+  console.log(exercise);
   const reset = () => {
     setExercises(null);
   };
@@ -103,11 +103,13 @@ const WorkoutCreate = () => {
         />
       </form>
       {exercises && (
+        <SelectExercise data={exercises} submitExercise={submitHandler} />
+      )}
+      {exercise.length > 0 && (
         <>
-          <SelectExercise data={exercises} submitExercise={submitHandler} />
           {renderExercises()}
           <input
-            className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
+            className="flex bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80 mt-6"
             type="button"
             value="confirm workout"
             onClick={(e) => handleNav(e)}
