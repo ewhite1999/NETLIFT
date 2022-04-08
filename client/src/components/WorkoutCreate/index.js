@@ -62,7 +62,7 @@ const WorkoutCreate = () => {
           </label>
           <ul className="space-y-1">
             {exercise.map((ex) => {
-              return <li>{ex.name}</li>;
+              return <li key={ex.name}>{ex.name}</li>;
             })}
           </ul>
         </>

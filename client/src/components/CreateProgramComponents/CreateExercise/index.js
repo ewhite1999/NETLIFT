@@ -29,7 +29,7 @@ const WorkoutCreate = () => {
       name: ex,
       reps: reps,
       sets: sets,
-      weight: weight
+      weight: weight,
     };
 
     dispatch(updateLifts(exObj));
@@ -68,7 +68,7 @@ const WorkoutCreate = () => {
       <form
         onSubmit={loadExercises}
         onChange={reset}
-        className="flex flex-col text-lg space-y-6"
+        className="flex flex-col text-lg space-y-6 mb-6"
       >
         <SelectTarget />
         <SelectEquipment />
@@ -82,14 +82,16 @@ const WorkoutCreate = () => {
         />
       </form>
       {exercises && (
-        <SelectExercise data={exercises} submitExercise={submitHandler} />
+        <>
+          <SelectExercise data={exercises} submitExercise={submitHandler} />
+          <input
+            className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
+            type="button"
+            value="confirm workout"
+            onClick={(e) => handleNav(e)}
+          />
+        </>
       )}
-      <input
-        className=" bg-nl-lightblue text-nl-darkblue text-2xl font-medium py-4 px-16 rounded-xl mx-auto hover:opacity-80"
-        type="button"
-        value="confirm workout"
-        onClick={(e) => handleNav(e)}
-      />
     </div>
   );
 };
