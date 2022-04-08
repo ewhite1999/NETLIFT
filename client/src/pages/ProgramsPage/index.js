@@ -45,9 +45,14 @@ const ProgramsPage = () => {
       ));
     } else {
       return (
-        <p>
+        <p className=" text-slate-50 text-lg">
           You don't have any Programs yet, why not{" "}
-          <Link to="/create">create one?</Link>
+          <Link
+            className="font-bold text-nl-lightblue hover:opacity-70"
+            to="/create"
+          >
+            create one?
+          </Link>
         </p>
       );
     }
